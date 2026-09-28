@@ -1,0 +1,21 @@
+... pytest suite
+    PASS: 1825 passed (total 1825) in 254s
+... Phase 11 tests
+    PASS: 44 test(s) in tests/test_phase11_system.py
+... frontend build
+    PASS: tsc --noEmit + vite build completed
+... docker compose config
+    PASS: rendered successfully (3 service(s))
+... API health / readiness
+    PASS: /health 200, /ready 200 (READY), /api/v1/system/status 200
+... reproducibility
+    PASS: 11 passed, 0 failed, 0 not applicable
+... demo pipeline (dry run)
+    PASS: exit 0; 7 stage(s) OK, 1 unavailable (documented, not failures)
+... demo pipeline (live)
+    PASS: exit 0; 7 stage(s) OK, 1 unavailable (documented, not failures)
+... deployment validation
+    PASS: 8 check(s) passed
+
+9/9 checks passed
+written: docs\FINAL_VALIDATION.md

@@ -1,0 +1,66 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "extreme-weather"
+version = "0.1.0"
+description = "DeepWeather AI (SIH26078) - extreme weather intelligence foundation: synthetic NWP-style data, preprocessing, anomaly-ready pipeline and baseline downscaling."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "DeepWeather AI Team (SIH26078)" }]
+keywords = ["sih26078", "deepweather-ai", "weather", "nwp", "preprocessing", "downscaling", "anomaly-detection"]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Atmospheric Science",
+]
+
+# NOTE: versions are intentionally unpinned in Phase 0 unless there is a real
+# compatibility reason. `requirements.txt` mirrors this list for plain
+# `pip install -r requirements.txt` usage.
+dependencies = [
+    # API layer
+    "fastapi",
+    "uvicorn[standard]",
+    "pydantic",
+    "pydantic-settings",
+    # Scientific / weather stack
+    "numpy",
+    "pandas",
+    "xarray",
+    "dask",
+    "netCDF4",
+    "scipy",
+    "metpy",
+    # AI foundation (installed in Phase 0, used from Phase 2 onwards)
+    "torch",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "httpx",  # required by fastapi.testclient.TestClient
+]
+# The Phase 3 GNN prototype needs no extra dependency: it runs on the `torch`
+# that is already a core dependency. `torch-geometric` is reserved for the FUTURE
+# full spatio-temporal GNN tracker (Phase 3b) - see docs/ARCHITECTURE.md.
+gnn = []
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["extreme_weather*"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-ra"

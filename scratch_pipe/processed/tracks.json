@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "project": "SIH26078",
+  "service": "DeepWeather AI",
+  "phase": "Phase 2 - event tracking (prototype)",
+  "generated_at": "2026-09-27T04:23:22+00:00",
+  "event_count": 1,
+  "track_count": 1,
+  "matched_event_count": 0,
+  "total_duration_hours": 0.0,
+  "status_counts": {
+    "NEW": 1,
+    "ACTIVE": 0,
+    "ENDED": 0
+  },
+  "metadata": {
+    "tracker_version": "0.1.0",
+    "project": "SIH26078",
+    "phase": "Phase 2 - event tracking (prototype)",
+    "event_source": "scratch_pipe\\processed\\events.json",
+    "matching": {
+      "max_distance_km": 250.0,
+      "max_speed_kmh": 120.0,
+      "max_time_gap_hours": 6.0,
+      "distance_weight": 0.7,
+      "intensity_weight": 0.3
+    },
+    "matching_note": "cost = (distance_weight * d/max_distance + intensity_weight * intensity_mismatch) / (distance_weight + intensity_weight); pairs are assigned greedily by increasing cost with deterministic tie-breaking.",
+    "lifecycle_rule": "NEW = single point at the last processed step, ACTIVE = last point at the last processed step, ENDED = stopped being matched earlier.",
+    "data_disclaimer": "Prototype tracking of synthetic events. Not an operational forecast, not a real-time warning product, and not verified against observed weather."
+  },
+  "tracks": [
+    {
+      "track_id": "TRK-EXTREME_RAINFALL-20240601T0000-001",
+      "event_type": "EXTREME_RAINFALL",
+      "status": "NEW",
+      "start_time": "2024-06-01T00:00:00Z",
+      "end_time": "2024-06-01T00:00:00Z",
+      "duration_hours": 0.0,
+      "points": [
+        {
+          "event_id": "EVT-EXTREME_RAINFALL-20240601T0000-001",
+          "timestamp": "2024-06-01T00:00:00Z",
+          "latitude": 12.54833,
+          "longitude": 76.74138799999999,
+          "intensity": 0.30000001192092896,
+          "anomaly_score": 0.22500000894069672,
+          "severity": "MODERATE",
+          "speed_kmh": 0.0,
+          "bearing_degrees": null,
+          "direction": "CALM",
+          "distance_from_previous_km": 0.0,
+          "cell_count": 2
+        }
+      ],
+      "peak_intensity": 0.30000001192092896,
+      "mean_intensity": 0.30000001192092896,
+      "max_speed_kmh": 0.0,
+      "mean_speed_kmh": 0.0,
+      "distance_travelled_km": 0.0,
+      "intensity_trend": "STABLE",
+      "direction": "CALM",
+      "bearing_degrees": null,
+      "variable": "precipitation",
+      "units": "mm h-1",
+      "peak_severity": "MODERATE"
+    }
+  ]
+}

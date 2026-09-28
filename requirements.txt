@@ -1,0 +1,39 @@
+# DeepWeather AI (SIH26078) - Phase 0 dependency set.
+#
+# Install with:  pip install -r requirements.txt
+#
+# Versions are deliberately unpinned in Phase 0: every package below ships
+# wheels for CPython 3.11-3.13 on Windows/Linux/macOS, and there is no known
+# incompatibility to work around yet. Pin only when a real conflict appears.
+
+# --- API layer ---
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+
+# --- Scientific / weather stack ---
+numpy
+pandas
+xarray
+dask
+netCDF4
+scipy
+metpy
+
+# --- AI foundation (installed in Phase 0, used by the Phase 3 GNN prototype) ---
+# The GNN prototype runs on this `torch` alone; PyTorch Geometric is NOT
+# required and is reserved for the FUTURE full spatio-temporal tracker.
+# For a much smaller CPU-only install use:
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+torch
+
+# --- Testing ---
+pytest
+# fastapi.testclient.TestClient is powered by httpx
+httpx
+
+# NOTE: `bottleneck` is intentionally NOT required. Missing-value filling is
+# implemented explicitly in extreme_weather.data.missing (see max_gap
+# semantics in that module) so no accelerated rolling/interpolation backend is
+# needed by xarray for this pipeline.

@@ -1,0 +1,82 @@
+# DeepWeather AI (SIH26078) - development and deployment stack.
+#
+#   docker compose up --build
+#   -> frontend http://localhost:5173   backend http://localhost:8000/health
+#
+# Keep the infrastructure minimal on purpose: just the API and the
+# dashboard. No database, cache, queue or Kubernetes manifests yet.
+# Phase 10: the backend now runs as a non-root user, exposes a separate
+# readiness probe, and receives every setting through the environment. No
+# credential is baked into this file; a deployment supplies its own via
+# `environment` or an env_file.
+#
+# This is a research prototype. The stack is configured for a small internal
+# deployment and is NOT hardened for exposure to the public internet: it has no
+# authentication, no TLS termination and no rate limiting. See docs/SECURITY.md.
+
+name: deepweather-ai
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: deepweather-ai-backend:phase10
+    container_name: deepweather-backend
+    # The image runs as a non-root user (uid 1001). Named here so the bind
+    # mounts below can be chowned to match: a host directory owned by another
+    # uid is the usual reason a hardened container cannot start.
+    user: "1001:1001"
+    environment:
+      APP_ENV: ${APP_ENV:-development}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      # 'text' for a terminal, 'json' for a log shipper.
+      LOG_FORMAT: ${LOG_FORMAT:-text}
+      DATA_DIR: /app/data
+      MODEL_DIR: /app/models
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5173,http://127.0.0.1:5173}
+      # Phase 10 safety switches, on by default.
+      ENFORCE_DATA_DIR_BOUNDARY: "true"
+      VERIFY_ARTIFACT_INTEGRITY: "true"
+      # A wildcard origin would let any site read this API from a browser.
+      ALLOW_CORS_WILDCARD: "false"
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+    volumes:
+      # Generated datasets are mounted so they survive container rebuilds.
+      - ./data:/app/data
+      - ./models:/app/models
+    # Liveness: the process is running. Deliberately does NOT consult models or
+    # the filesystem, so a missing checkpoint cannot restart-loop the container.
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request, sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=4).status == 200 else 1)"
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    # Stops the container gracefully so an in-flight request is not severed.
+    stop_grace_period: 30s
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: deepweather-ai-frontend:phase10
+    container_name: deepweather-frontend
+    environment:
+      # The browser talks to the backend through this address. No secret is
+      # involved: this is a public URL baked into the client bundle at build time.
+      VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:8000}
+    ports:
+      - "${FRONTEND_PORT:-5173}:5173"
+    depends_on:
+      backend:
+        # Readiness, not mere start-up: the dashboard should not load against a
+        # backend that cannot serve.
+        condition: service_healthy
+    restart: unless-stopped

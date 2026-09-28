@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-09-27T04:23:22+00:00",
+  "record_count": 1,
+  "delivered_count": 1,
+  "providers": [],
+  "records": [
+    {
+      "notification_id": "NTF-ALT-EVT-EXTREME_RAINFALL-20240601T0000-001-ADVISORY-000029841360-001",
+      "alert_id": "ALT-EVT-EXTREME_RAINFALL-20240601T0000-001-ADVISORY-000029841360",
+      "provider": "mock",
+      "channel": "local",
+      "subject": "[ADVISORY] ADVISORY Extreme Rainfall alert",
+      "body": "A extreme rainfall event was detected at 12.55 N, 76.74 E with an anomaly score of 0.23 (Phase 1 severity MODERATE). It has been tracked for 0.0 h, moving CALM at up to 0.0 km/h. No GNN prediction is available for this event. No AI-downscaled threat field is available for this event. This is prototype output on synthetic data, not an official warning and not a validated forecast.\n\nEvent       : EVT-EXTREME_RAINFALL-20240601T0000-001 (EXTREME_RAINFALL)\nTrack       : TRK-EXTREME_RAINFALL-20240601T0000-001\nStatus      : ACTIVE\nPriority    : ADVISORY\nRisk score  : 17.69/100\nLocation    : 12.548 N, 76.741 E\nPredicted   : no GNN prediction available\nComponents  : events, tracking\n\nWhy this alert exists:\nADVISORY priority (score 17.69/100) because:\n- Anomaly severity: Phase 1 severity MODERATE (+11.00)\n- Intensity trend: intensity is roughly stable over the track (+4.80)\n- Affected radius: 27.08 km against a reference of 150.00 km (+1.81)\n- Observed intensity: 0.30 against a reference of 50.00 (+0.08)\n- no GNN prediction available, so no forward-looking intensity was used\n- no AI-downscaled threat field available, so no ~5 km threat information was used\nRule-based prototype triage score. It is NOT a validated disaster-risk index, NOT calibrated against impact, and NOT a probability of occurrence.\n\nPrototype alerting layer built on synthetic data. Alerts are produced by deterministic rules, not by a validated disaster-prediction model, and are NOT an official warning. Do not use them for emergency decisions.",
+      "severity": "ADVISORY",
+      "alert_status": "ACTIVE",
+      "created_at": "2026-09-27T04:23:22Z",
+      "delivered": true,
+      "detail": "recorded locally; no external delivery attempted",
+      "disclaimer": "Prototype notification log. Messages are written locally and are never delivered to any external service. No real email, SMS or webhook is sent."
+    }
+  ],
+  "notice": "Prototype notification log. Messages are written locally and are never delivered to any external service. No real email, SMS or webhook is sent."
+}

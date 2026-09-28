@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "project": "SIH26078",
+  "service": "DeepWeather AI",
+  "dataset_id": "c",
+  "source": "local_file",
+  "source_url": null,
+  "retrieved_at": "2026-09-27T04:21:11+00:00",
+  "file_name": "c.nc",
+  "file_hash": "de062dc7d6e2d4f00b507dc02eb4690d5d88c3992c86bde717a9c5df58414a6d",
+  "file_hash_algorithm": "sha256",
+  "content_hash": "f238cd2639bc34b8aa79bc7eeab08ccb43bd8ec0118150a0316838fa778a509c",
+  "size_bytes": 15185,
+  "format": "netcdf",
+  "origin": "HISTORICAL",
+  "is_synthetic": false,
+  "is_live": false,
+  "status_label": "HISTORICAL",
+  "variables": [
+    "precipitation",
+    "pressure",
+    "relative_humidity",
+    "temperature",
+    "u_wind",
+    "v_wind"
+  ],
+  "variables_missing": [],
+  "dimensions": {
+    "time": 4,
+    "latitude": 3,
+    "longitude": 3
+  },
+  "resolution_deg": 0.5,
+  "resolution_km": 55.66,
+  "time_start": "2024-06-01T00:00:00",
+  "time_end": "2024-06-01T03:00:00",
+  "time_step_seconds": 3600.0,
+  "coordinate_system": "latitude_longitude",
+  "units": {
+    "temperature": "K",
+    "precipitation": "mm h-1",
+    "pressure": "Pa",
+    "relative_humidity": "%",
+    "u_wind": "m s-1",
+    "v_wind": "m s-1"
+  },
+  "unit_conversions": {},
+  "coordinate_actions": [],
+  "license": null,
+  "quality_summary": {},
+  "processing_steps": [],
+  "notes": ""
+}

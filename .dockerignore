@@ -1,0 +1,16 @@
+**/__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+data/
+models/
+frontend/
+docs/
+.git/
+.gitignore
+.env
+*.log
+_smoke.py

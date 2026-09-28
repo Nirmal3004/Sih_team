@@ -1,0 +1,163 @@
+{
+  "schema_version": "1.0",
+  "project": "SIH26078",
+  "service": "DeepWeather AI",
+  "dataset_id": "syn",
+  "source": "local_file",
+  "source_url": null,
+  "retrieved_at": "2026-09-27T04:23:33+00:00",
+  "file_name": "syn.nc",
+  "file_hash": "05e572452ed7a070621d25d954312dc82eeed52d575d2d4c88fd57c902251946",
+  "file_hash_algorithm": "sha256",
+  "content_hash": "1728e707a8fab97674b255a514cf6a070a5ce3366862ba46f21aec1edb4e7fe0",
+  "size_bytes": 38770,
+  "format": "netcdf",
+  "origin": "SYNTHETIC",
+  "is_synthetic": true,
+  "is_live": false,
+  "status_label": "SYNTHETIC",
+  "variables": [
+    "precipitation",
+    "pressure",
+    "relative_humidity",
+    "temperature",
+    "u_wind",
+    "v_wind"
+  ],
+  "variables_missing": [],
+  "dimensions": {
+    "time": 8,
+    "latitude": 3,
+    "longitude": 3
+  },
+  "resolution_deg": 0.5,
+  "resolution_km": 55.66,
+  "time_start": "2024-06-01T00:00:00",
+  "time_end": "2024-06-01T07:00:00",
+  "time_step_seconds": 3600.0,
+  "coordinate_system": "latitude_longitude",
+  "units": {
+    "precipitation": "mm h-1",
+    "temperature": "K",
+    "pressure": "Pa",
+    "relative_humidity": "%",
+    "u_wind": "m s-1",
+    "v_wind": "m s-1"
+  },
+  "unit_conversions": {
+    "precipitation": {
+      "variable": "precipitation",
+      "original_units": "mm h-1",
+      "normalized_units": "mm h-1",
+      "conversion_method": "identity",
+      "scale": 1.0
+    },
+    "temperature": {
+      "variable": "temperature",
+      "original_units": "K",
+      "normalized_units": "K",
+      "conversion_method": "identity",
+      "scale": 1.0
+    },
+    "pressure": {
+      "variable": "pressure",
+      "original_units": "Pa",
+      "normalized_units": "Pa",
+      "conversion_method": "identity",
+      "scale": 1.0
+    },
+    "relative_humidity": {
+      "variable": "relative_humidity",
+      "original_units": "%",
+      "normalized_units": "%",
+      "conversion_method": "identity",
+      "scale": 1.0
+    },
+    "u_wind": {
+      "variable": "u_wind",
+      "original_units": "m s-1",
+      "normalized_units": "m s-1",
+      "conversion_method": "identity",
+      "scale": 1.0
+    },
+    "v_wind": {
+      "variable": "v_wind",
+      "original_units": "m s-1",
+      "normalized_units": "m s-1",
+      "conversion_method": "identity",
+      "scale": 1.0
+    }
+  },
+  "coordinate_actions": [],
+  "license": null,
+  "quality_summary": {
+    "valid": true,
+    "errors": [],
+    "warnings": [],
+    "error_count": 0,
+    "warning_count": 0,
+    "missing_fraction": 0.0,
+    "time_steps": 8,
+    "spatial_points": 9,
+    "variables": [
+      "precipitation",
+      "pressure",
+      "relative_humidity",
+      "temperature",
+      "u_wind",
+      "v_wind"
+    ],
+    "per_variable_nan": {
+      "precipitation": 0.0,
+      "pressure": 0.0,
+      "relative_humidity": 0.0,
+      "temperature": 0.0,
+      "u_wind": 0.0,
+      "v_wind": 0.0
+    },
+    "duplicate_timestamps": 0,
+    "duplicate_coordinates": 0,
+    "unexpected_dimensions": [],
+    "missing_standard_variables": [],
+    "generated_at": "2026-09-27T04:23:33+00:00"
+  },
+  "processing_steps": [
+    {
+      "stage": "ingested",
+      "tool": "extreme_weather.ingestion.netcdf",
+      "version": "0.1.0",
+      "input_hash": "91db9b0141e4a6cd1c0e110f7e7ace656711b16a01ecf2712f9a276ef50c89ac",
+      "output_hash": null,
+      "configuration": {},
+      "performed_at": "2026-09-27T04:23:33+00:00",
+      "details": "Read scratch_syn\\raw\\synthetic\\syn.nc through the 'netcdf' source."
+    },
+    {
+      "stage": "validated",
+      "tool": "extreme_weather.ingestion.quality",
+      "version": "0.1.0",
+      "input_hash": null,
+      "output_hash": "1728e707a8fab97674b255a514cf6a070a5ce3366862ba46f21aec1edb4e7fe0",
+      "configuration": {
+        "strict": true
+      },
+      "performed_at": "2026-09-27T04:23:33+00:00",
+      "details": "valid=True, 0 error(s), 0 warning(s)"
+    },
+    {
+      "stage": "normalized",
+      "tool": "extreme_weather.ingestion.normalizer",
+      "version": "0.1.0",
+      "input_hash": null,
+      "output_hash": "1728e707a8fab97674b255a514cf6a070a5ce3366862ba46f21aec1edb4e7fe0",
+      "configuration": {
+        "variables": "settings default",
+        "latitude": null,
+        "longitude": null
+      },
+      "performed_at": "2026-09-27T04:23:33+00:00",
+      "details": "no coordinate change"
+    }
+  ],
+  "notes": ""
+}

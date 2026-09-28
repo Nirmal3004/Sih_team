@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "project": "SIH26078",
+  "service": "DeepWeather AI",
+  "phase": "Phase 1 - anomaly detection (prototype)",
+  "generated_at": "2026-09-27T04:23:12+00:00",
+  "source_dataset": "scratch_pipe\\processed\\era5_processed.nc",
+  "reference_dataset": null,
+  "score_name": "absolute",
+  "grouping": "month",
+  "variables": [
+    "precipitation"
+  ],
+  "event_count": 1,
+  "metadata": {
+    "analyzer_version": "0.1.0",
+    "project": "SIH26078",
+    "score_formula": "EFI = Phi^-1( (p_fc - p_clim) / (1 - p_clim) ), with p_fc the percentile of the current value inside the reference distribution of the matching climatology group, p_clim the configured climatological percentile (default 0.9) and Phi^-1 the standard-normal quantile function. The ratio is clipped to [0, 1 - 1e-6] and the result to [EFI_MIN, EFI_MAX], so the score is bounded. Prototype implementation: deterministic (no ensemble), uncalibrated, and NOT an operational ECMWF EFI.",
+    "score_names_available": [
+      "absolute",
+      "efi",
+      "extremeness",
+      "percentile",
+      "standardized"
+    ],
+    "climatology_grouping": "month",
+    "climatology_min_samples": 10,
+    "climatology_quantile_levels": 99,
+    "thresholds": {
+      "precip_era5": {
+        "variable": "precipitation",
+        "event_type": "EXTREME_RAINFALL",
+        "score_name": "efi",
+        "steps": [
+          [
+            0.1,
+            "WATCH"
+          ],
+          [
+            0.2,
+            "MODERATE"
+          ],
+          [
+            0.3,
+            "EXTREME"
+          ]
+        ],
+        "note": "Prototype severity thresholds for the SIH26078 demo. They are NOT official warning thresholds (for example IMD criteria) and are not calibrated for real weather data."
+      }
+    },
+    "threshold_disclaimer": "Prototype severity thresholds for the SIH26078 demo. They are NOT official warning thresholds (for example IMD criteria) and are not calibrated for real weather data.",
+    "min_cells": 1,
+    "connectivity": 8,
+    "severity_counts": {
+      "MODERATE": 1
+    },
+    "data_disclaimer": "Prototype analysis on synthetic data. Not an operational forecast and not suitable for real warning decisions."
+  },
+  "events": [
+    {
+      "event_id": "EVT-EXTREME_RAINFALL-20240601T0000-001",
+      "event_type": "EXTREME_RAINFALL",
+      "timestamp": "2024-06-01T00:00:00Z",
+      "latitude": 12.54833,
+      "longitude": 76.74138799999999,
+      "intensity": 0.30000001192092896,
+      "anomaly_score": 0.22500000894069672,
+      "severity": "MODERATE",
+      "affected_radius_km": 27.08242652188767,
+      "cell_count": 2,
+      "variable": "precipitation",
+      "units": "mm h-1",
+      "max_value": 0.30000001192092896,
+      "mean_value": 0.30000001192092896
+    }
+  ]
+}

@@ -1,0 +1,209 @@
+{
+  "schema_version": "1.0",
+  "project": "SIH26078",
+  "service": "DeepWeather AI",
+  "phase": "Phase 5 - alerting and emergency response (prototype)",
+  "generated_at": "2026-09-27T04:23:22+00:00",
+  "alert_count": 1,
+  "created_count": 1,
+  "updated_count": 0,
+  "suppressed_count": 0,
+  "status_counts": {
+    "NEW": 0,
+    "ACTIVE": 1,
+    "ACKNOWLEDGED": 0,
+    "RESOLVED": 0,
+    "EXPIRED": 0
+  },
+  "severity_counts": {
+    "INFO": 0,
+    "WATCH": 0,
+    "ADVISORY": 1,
+    "WARNING": 0,
+    "SEVERE_WARNING": 0,
+    "EXTREME": 0
+  },
+  "metadata": {
+    "dry_run": false,
+    "event_count": 1,
+    "track_count": 1,
+    "risk_config": {
+      "intensity_reference": {
+        "EXTREME_RAINFALL": 50.0,
+        "EXTREME_WIND": 15.0,
+        "EXTREME_TEMPERATURE": 8.0
+      },
+      "intensity_reference_fallback": 50.0,
+      "radius_reference_km": 150.0,
+      "speed_reference_kmh": 60.0,
+      "persistence_reference_hours": 12.0,
+      "severity_thresholds": {
+        "warning": 25.0,
+        "severe_warning": 45.0,
+        "extreme": 70.0
+      },
+      "factor_weights": {
+        "anomaly_severity": 22.0,
+        "intensity": 14.0,
+        "intensity_trend": 12.0,
+        "movement_speed": 8.0,
+        "predicted_intensity_change": 12.0,
+        "predicted_movement": 6.0,
+        "affected_radius": 10.0,
+        "persistence": 10.0,
+        "downscaled_threat": 6.0
+      }
+    },
+    "rule_config": {
+      "min_trigger_severity": "WATCH",
+      "elevate_for_severities": [
+        "SEVERE",
+        "EXTREME"
+      ],
+      "strengthening_delta": 0.0,
+      "persistence_hours": 3.0,
+      "predicted_increase_delta": 0.0,
+      "resolve_intensity_threshold": 0.0,
+      "expire_after_hours": 6.0,
+      "deduplication_window_minutes": 60,
+      "default_validity_minutes": 360,
+      "downgrade_on_weakening": true
+    },
+    "notes": [
+      "No GNN service configured; prediction not used."
+    ],
+    "notification_count": 1
+  },
+  "alerts": [
+    {
+      "alert_id": "ALT-EVT-EXTREME_RAINFALL-20240601T0000-001-ADVISORY-000029841360",
+      "event_id": "EVT-EXTREME_RAINFALL-20240601T0000-001",
+      "track_id": "TRK-EXTREME_RAINFALL-20240601T0000-001",
+      "event_type": "EXTREME_RAINFALL",
+      "severity": "ADVISORY",
+      "priority": "ADVISORY",
+      "title": "ADVISORY Extreme Rainfall alert",
+      "message": "A extreme rainfall event was detected at 12.55 N, 76.74 E with an anomaly score of 0.23 (Phase 1 severity MODERATE). It has been tracked for 0.0 h, moving CALM at up to 0.0 km/h. No GNN prediction is available for this event. No AI-downscaled threat field is available for this event. This is prototype output on synthetic data, not an official warning and not a validated forecast.",
+      "created_at": "2026-09-27T04:23:22Z",
+      "updated_at": "2026-09-27T04:23:22Z",
+      "valid_from": "2026-09-27T04:23:22Z",
+      "valid_until": "2026-09-27T10:23:22Z",
+      "status": "ACTIVE",
+      "confidence_label": "LOW",
+      "risk": {
+        "score": 17.69,
+        "level": "ADVISORY",
+        "contributing_factors": [
+          {
+            "name": "anomaly_severity",
+            "label": "Anomaly severity",
+            "weight": 22.0,
+            "normalized_value": 0.5,
+            "raw_value": 2.0,
+            "points": 11.0,
+            "detail": "Phase 1 severity MODERATE"
+          },
+          {
+            "name": "intensity",
+            "label": "Observed intensity",
+            "weight": 14.0,
+            "normalized_value": 0.006,
+            "raw_value": 0.3,
+            "points": 0.084,
+            "detail": "0.30 against a reference of 50.00"
+          },
+          {
+            "name": "intensity_trend",
+            "label": "Intensity trend",
+            "weight": 12.0,
+            "normalized_value": 0.4,
+            "raw_value": null,
+            "points": 4.8,
+            "detail": "intensity is roughly stable over the track"
+          },
+          {
+            "name": "movement_speed",
+            "label": "Movement speed",
+            "weight": 8.0,
+            "normalized_value": 0.0,
+            "raw_value": 0.0,
+            "points": 0.0,
+            "detail": "0.00 km/h against a reference of 60.00 km/h"
+          },
+          {
+            "name": "predicted_intensity_change",
+            "label": "Predicted intensity change",
+            "weight": 12.0,
+            "normalized_value": 0.0,
+            "raw_value": null,
+            "points": 0.0,
+            "detail": "GNN prediction unavailable - factor contributes nothing"
+          },
+          {
+            "name": "predicted_movement",
+            "label": "Predicted movement",
+            "weight": 6.0,
+            "normalized_value": 0.0,
+            "raw_value": null,
+            "points": 0.0,
+            "detail": "GNN prediction unavailable - factor contributes nothing"
+          },
+          {
+            "name": "affected_radius",
+            "label": "Affected radius",
+            "weight": 10.0,
+            "normalized_value": 0.1805,
+            "raw_value": 27.0824,
+            "points": 1.8055,
+            "detail": "27.08 km against a reference of 150.00 km"
+          },
+          {
+            "name": "persistence",
+            "label": "Event persistence",
+            "weight": 10.0,
+            "normalized_value": 0.0,
+            "raw_value": 0.0,
+            "points": 0.0,
+            "detail": "tracked for 0.00 h against a reference of 12.00 h"
+          },
+          {
+            "name": "downscaled_threat",
+            "label": "AI-downscaled threat field",
+            "weight": 6.0,
+            "normalized_value": 0.0,
+            "raw_value": null,
+            "points": 0.0,
+            "detail": "no downscaled threat field available - factor contributes nothing"
+          }
+        ],
+        "explanation": "ADVISORY priority (score 17.69/100) because:\n- Anomaly severity: Phase 1 severity MODERATE (+11.00)\n- Intensity trend: intensity is roughly stable over the track (+4.80)\n- Affected radius: 27.08 km against a reference of 150.00 km (+1.81)\n- Observed intensity: 0.30 against a reference of 50.00 (+0.08)\n- no GNN prediction available, so no forward-looking intensity was used\n- no AI-downscaled threat field available, so no ~5 km threat information was used\nRule-based prototype triage score. It is NOT a validated disaster-risk index, NOT calibrated against impact, and NOT a probability of occurrence.",
+        "generated_at": "2026-09-27T04:23:22Z",
+        "severity_thresholds": {
+          "warning": 25.0,
+          "severe_warning": 45.0,
+          "extreme": 70.0
+        },
+        "notice": "Rule-based prototype score, not a validated disaster-risk index and not a probability of occurrence."
+      },
+      "current_lat": 12.54833,
+      "current_lon": 76.74138799999999,
+      "predicted_lat": null,
+      "predicted_lon": null,
+      "intensity": 0.30000001192092896,
+      "predicted_intensity": null,
+      "movement_speed_kmh": 0.0,
+      "movement_direction": "CALM",
+      "affected_radius_km": 27.08242652188767,
+      "source_components": [
+        "events",
+        "tracking"
+      ],
+      "deduplication_key": "EVT-EXTREME_RAINFALL-20240601T0000-001|ADVISORY|000029841360",
+      "acknowledged_at": null,
+      "resolved_at": null,
+      "resolved_reason": null,
+      "notice": "Prototype alerting layer built on synthetic data. Alerts are produced by deterministic rules, not by a validated disaster-prediction model, and are NOT an official warning. Do not use them for emergency decisions."
+    }
+  ],
+  "notice": "Prototype alerting layer built on synthetic data. Alerts are produced by deterministic rules, not by a validated disaster-prediction model, and are NOT an official warning. Do not use them for emergency decisions."
+}

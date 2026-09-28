@@ -1,0 +1,168 @@
+{
+  "schema_version": "1.0",
+  "project": "SIH26078",
+  "service": "DeepWeather AI",
+  "dataset_id": "era5_demo",
+  "source": "local_file",
+  "source_url": null,
+  "retrieved_at": "2026-09-27T04:22:06+00:00",
+  "file_name": "era5_demo.nc",
+  "file_hash": "d12007d130167acd9a47d91e3b277acd21f24ad0f7ed341ec1f19b0f8e5a616c",
+  "file_hash_algorithm": "sha256",
+  "content_hash": "79852cd93e169fe52bb009ca05877251a69b321b23cda1e91fe42000d0a8f6e9",
+  "size_bytes": 17939,
+  "format": "netcdf",
+  "origin": "HISTORICAL",
+  "is_synthetic": false,
+  "is_live": false,
+  "status_label": "HISTORICAL",
+  "variables": [
+    "precipitation",
+    "pressure",
+    "relative_humidity",
+    "temperature",
+    "u_wind",
+    "v_wind"
+  ],
+  "variables_missing": [
+    "u_wind",
+    "v_wind"
+  ],
+  "dimensions": {
+    "time": 4,
+    "latitude": 2,
+    "longitude": 2
+  },
+  "resolution_deg": 0.460414,
+  "resolution_km": 51.253,
+  "time_start": "2024-06-01T00:00:00",
+  "time_end": "2024-06-01T03:00:00",
+  "time_step_seconds": 3600.0,
+  "coordinate_system": "latitude_longitude",
+  "units": {
+    "precipitation": "mm h-1",
+    "temperature": "K",
+    "pressure": "Pa",
+    "relative_humidity": "%",
+    "u_wind": "m s-1",
+    "v_wind": "m s-1"
+  },
+  "unit_conversions": {
+    "precipitation": {
+      "variable": "precipitation",
+      "original_units": "mm",
+      "normalized_units": "mm h-1",
+      "conversion_method": "relabelled mm",
+      "scale": 1.0
+    },
+    "temperature": {
+      "variable": "temperature",
+      "original_units": "degC",
+      "normalized_units": "K",
+      "conversion_method": "Celsius -> Kelvin (offset +273.15)",
+      "scale": 1.0
+    },
+    "pressure": {
+      "variable": "pressure",
+      "original_units": "hPa",
+      "normalized_units": "Pa",
+      "conversion_method": "hPa -> Pa (x100)",
+      "scale": 100.0
+    },
+    "relative_humidity": {
+      "variable": "relative_humidity",
+      "original_units": "%",
+      "normalized_units": "%",
+      "conversion_method": "identity",
+      "scale": 1.0
+    },
+    "wind_speed": {
+      "variable": "wind_speed",
+      "original_units": "m s-1",
+      "normalized_units": "m s-1",
+      "conversion_method": "identity",
+      "scale": 1.0
+    },
+    "wind_direction": {
+      "variable": "wind_direction",
+      "original_units": "degree",
+      "normalized_units": "degree",
+      "conversion_method": "identity",
+      "scale": 1.0
+    }
+  },
+  "coordinate_actions": [
+    "derived wind_speed + wind_direction into u_wind/v_wind (meteorological convention, standard reversible conversion)"
+  ],
+  "license": null,
+  "quality_summary": {
+    "valid": true,
+    "errors": [],
+    "warnings": [],
+    "error_count": 0,
+    "warning_count": 0,
+    "missing_fraction": 0.0,
+    "time_steps": 4,
+    "spatial_points": 4,
+    "variables": [
+      "precipitation",
+      "pressure",
+      "relative_humidity",
+      "temperature",
+      "u_wind",
+      "v_wind"
+    ],
+    "per_variable_nan": {
+      "precipitation": 0.0,
+      "pressure": 0.0,
+      "relative_humidity": 0.0,
+      "temperature": 0.0,
+      "u_wind": 0.0,
+      "v_wind": 0.0
+    },
+    "duplicate_timestamps": 0,
+    "duplicate_coordinates": 0,
+    "unexpected_dimensions": [],
+    "missing_standard_variables": [],
+    "generated_at": "2026-09-27T04:22:06+00:00"
+  },
+  "processing_steps": [
+    {
+      "stage": "ingested",
+      "tool": "extreme_weather.ingestion.netcdf",
+      "version": "0.1.0",
+      "input_hash": "ce8200422500b18943596f42cb59a484106c9844f7ace6c5433812f3964d3721",
+      "output_hash": null,
+      "configuration": {},
+      "performed_at": "2026-09-27T04:22:06+00:00",
+      "details": "Read scratch_pipe\\raw\\real\\era5_source.nc through the 'netcdf' source."
+    },
+    {
+      "stage": "validated",
+      "tool": "extreme_weather.ingestion.quality",
+      "version": "0.1.0",
+      "input_hash": null,
+      "output_hash": "79852cd93e169fe52bb009ca05877251a69b321b23cda1e91fe42000d0a8f6e9",
+      "configuration": {
+        "strict": true
+      },
+      "performed_at": "2026-09-27T04:22:06+00:00",
+      "details": "valid=True, 0 error(s), 0 warning(s)"
+    },
+    {
+      "stage": "normalized",
+      "tool": "extreme_weather.ingestion.normalizer",
+      "version": "0.1.0",
+      "input_hash": null,
+      "output_hash": "79852cd93e169fe52bb009ca05877251a69b321b23cda1e91fe42000d0a8f6e9",
+      "configuration": {
+        "variables": "settings default",
+        "latitude": null,
+        "longitude": null
+      },
+      "performed_at": "2026-09-27T04:22:06+00:00",
+      "details": "derived wind_speed + wind_direction into u_wind/v_wind (meteorological convention, standard reversible conversion)"
+    }
+  ],
+  "notes": ""
+}
